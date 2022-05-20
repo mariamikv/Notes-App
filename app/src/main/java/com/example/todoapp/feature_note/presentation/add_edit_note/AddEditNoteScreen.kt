@@ -1,4 +1,4 @@
-package com.example.todoapp.feature_note.presentation.add_edit_note.components
+package com.example.todoapp.feature_note.presentation.add_edit_note
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
@@ -22,9 +22,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.todoapp.R
 import com.example.todoapp.feature_note.domain.model.Note
-import com.example.todoapp.feature_note.presentation.add_edit_note.AddEditNoteEvent
-import com.example.todoapp.feature_note.presentation.add_edit_note.AddEditNoteViewModel
-import com.example.todoapp.feature_note.presentation.add_edit_note.UiEvent
+import com.example.todoapp.feature_note.presentation.add_edit_note.components.TransparentHintTextField
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -120,31 +118,30 @@ fun AddEditNoteScreen(
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
                 text = titleState.text,
-                hit = titleState.hint,
+                hint = titleState.hint,
                 onValueChange = {
                     viewModel.onEvent(AddEditNoteEvent.EnteredTitle(it))
                 },
-                onFocusChanged = {
+                onFocusChange = {
                     viewModel.onEvent(AddEditNoteEvent.ChangeTitleFocus(it))
                 },
                 isHintVisible = titleState.isHintVisible,
                 singleLine = true,
                 textStyle = MaterialTheme.typography.h5
             )
-
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
                 text = contentState.text,
-                hit = contentState.hint,
+                hint = contentState.hint,
                 onValueChange = {
                     viewModel.onEvent(AddEditNoteEvent.EnteredContent(it))
                 },
-                onFocusChanged = {
+                onFocusChange = {
                     viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
                 },
                 isHintVisible = contentState.isHintVisible,
                 textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxHeight()
             )
         }
     }

@@ -14,17 +14,17 @@ import androidx.compose.ui.text.TextStyle
 @Composable
 fun TransparentHintTextField(
     text: String,
-    hit: String,
+    hint: String,
     modifier: Modifier = Modifier,
     isHintVisible: Boolean = true,
     onValueChange: (String) -> Unit,
     textStyle: TextStyle = TextStyle(),
     singleLine: Boolean = false,
-    onFocusChanged: (FocusState) -> Unit
-){
+    onFocusChange: (FocusState) -> Unit
+) {
     Box(
         modifier = modifier
-    ){
+    ) {
         BasicTextField(
             value = text,
             onValueChange = onValueChange,
@@ -33,11 +33,11 @@ fun TransparentHintTextField(
             modifier = Modifier
                 .fillMaxWidth()
                 .onFocusChanged {
-                    onFocusChanged(it)
+                    onFocusChange(it)
                 }
         )
-        if(isHintVisible){
-            Text(text = hit, style = textStyle, color = Color.DarkGray)
+        if(isHintVisible) {
+            Text(text = hint, style = textStyle, color = Color.DarkGray)
         }
     }
 }
